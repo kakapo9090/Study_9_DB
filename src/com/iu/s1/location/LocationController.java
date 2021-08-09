@@ -1,5 +1,7 @@
 package com.iu.s1.location;
 
+import java.util.ArrayList;
+
 public class LocationController {
 
 	private LocationDAO locationDAO;
@@ -12,12 +14,18 @@ public class LocationController {
 	}
 	
 	public void start() {
+
+		int count = locationDAO.getCount();
+		locationView.view(count);
+		
+//		ArrayList<LocationDTO> ar = locationDAO.getSearch("Vi");
+//		locationView.view(ar);
 		
 		//DB에서 Location Table의 모든 정보를 조회
-//		locationDAO.getList();
-//		locationView.view();
-		locationDAO.getOne(0);
-		locationView.view();
+//		ArrayList<LocationDTO> ar = locationDAO.getList();
+//		locationView.view(ar);
+//		LocationDTO locationDTO = locationDAO.getOne(1000);
+//		locationView.view(locationDTO);
 		
 	}
 	
