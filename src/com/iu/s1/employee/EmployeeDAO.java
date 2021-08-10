@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.iu.s1.location.LocationDTO;
 import com.iu.s1.util.DBConnect;
@@ -61,11 +62,11 @@ public class EmployeeDAO {
 	
 	
 	//2. 사원번호를 입력해서 한 사원 정보 출력
-	public ArrayList<EmployeeDTO> getOne(int num) {
+	public EmployeeDTO getOne(int num) {
 		Connection con = null;
 		PreparedStatement st = null;
 		ResultSet rs = null;
-		ArrayList<EmployeeDTO> ar = new ArrayList<EmployeeDTO>();
+		EmployeeDTO employeeDTO = null;
 		try {
 			con = dbConnect.getConnect();
 			
@@ -74,8 +75,8 @@ public class EmployeeDAO {
 			st.setInt(1, num);
 			rs = st.executeQuery();
 			
-			while(rs.next()){
-			EmployeeDTO employeeDTO = new EmployeeDTO();
+			if(rs.next()){
+			employeeDTO = new EmployeeDTO();
 			employeeDTO.setEmployee_id(rs.getInt("employee_id"));
 			employeeDTO.setFirst_name(rs.getString("first_name"));
 			employeeDTO.setLast_name(rs.getString("last_name"));
@@ -88,7 +89,6 @@ public class EmployeeDAO {
 			employeeDTO.setManager_id(rs.getInt("manager_id"));
 			employeeDTO.setDepartment_id(rs.getInt("department_id"));
 			
-			ar.add(employeeDTO);
 			}
 			
 		} catch (Exception e) {
@@ -98,7 +98,7 @@ public class EmployeeDAO {
 			dbConnect.disConnect(rs, st, con);
 		}
 		
-		return ar;
+		return employeeDTO;
 	}// getOne() 종료
 	
 	
@@ -267,4 +267,12 @@ public class EmployeeDAO {
 			return ar;
 	}//getSalaryAvgDepartment() 종료
 	
+	
+	
+	//6-1 Map활용
+	public void getAvg2() {
+		HashMap<String, Object> obj = new HashMap<>();
+		obj.put("id", 20);
+		obj.put("avg", 10000.12);
+	}
 }// 클래스 종료

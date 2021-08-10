@@ -18,8 +18,8 @@ public class EmployeeController {
 //		employeeView.view(ar);
 		
 		//2. 한 사원 번호 출력	
-//		ArrayList<EmployeeDTO> ar = employeeDAO.getOne(150);
-//		employeeView.view(ar);
+		EmployeeDTO employeeDTO = employeeDAO.getOne(150);
+		employeeView.view(employeeDTO);
 		
 		//3. Last_name 검색
 //		ArrayList<EmployeeDTO> ar = employeeDAO.getLastName("st");
@@ -34,9 +34,9 @@ public class EmployeeController {
 //		employeeView.view(avg);
 		
 		//6. 부서별 평균 급여의 정보 출력
-		ArrayList<EmployeeDTO> ar = employeeDAO.getSalaryAvgDepartment();
-		System.out.println("AVG(SALARY)"+"\t"+"\t"+"DEPARTMENT_ID");
-		employeeView.view2(ar);
+//		ArrayList<EmployeeDTO> ar2 = employeeDAO.getSalaryAvgDepartment();
+//		System.out.println("AVG(SALARY)"+"\t"+"\t"+"DEPARTMENT_ID");
+//		employeeView.view2(ar2);
 		
 	}// start() 종료
 	
