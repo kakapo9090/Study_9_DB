@@ -15,8 +15,11 @@ public class LocationController {
 	
 	public void start() {
 
-		int count = locationDAO.getCount();
-		locationView.view(count);
+		LocationDTO locationDTO = locationDAO.getLocation(100);
+		locationView.view(locationDTO);
+		
+//		int count = locationDAO.getCount();
+//		locationView.view(count);
 		
 //		ArrayList<LocationDTO> ar = locationDAO.getSearch("Vi");
 //		locationView.view(ar);
