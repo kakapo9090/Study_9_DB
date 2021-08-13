@@ -18,9 +18,13 @@ public class LocationView {
 	
 	public void view(LocationDTO locationDTO) {
 		
-		System.out.println(locationDTO.getLocation_id());
-		System.out.println(locationDTO.getStreet_address());
-		System.out.println(locationDTO.getCity());
+		System.out.print(locationDTO.getLocation_id()+"\t");
+		System.out.print(locationDTO.getStreet_address()+"\t");
+		System.out.print(locationDTO.getPostal_code()+"\t");
+		System.out.print(locationDTO.getCity()+"\t");
+		System.out.print(locationDTO.getState_province()+"\t");
+		System.out.println(locationDTO.getCountry_id()+"\t");
+		System.out.println("--------------------------------------------------------------");
 	}
 	
 }

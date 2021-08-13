@@ -17,6 +17,48 @@ public class LocationDAO {
 		dbConnect = new DBConnect();
 	}
 	
+	//Insert 
+	public int setInsert(LocationDTO locationDTO) {
+		Connection con = null;
+		PreparedStatement st = null;
+		int result = 0;
+		
+		try {
+			con = dbConnect.getConnect();
+			
+			String sql = "INSERT INTO LOCATIONS VALUES (?, ?, ?, ?, ?, ?)";
+			st=con.prepareStatement(sql);
+			
+			
+			st.setInt(1, locationDTO.getLocation_id());
+			st.setString(2, locationDTO.getStreet_address());
+			st.setString(3, locationDTO.getPostal_code());
+			st.setString(4, locationDTO.getCity());
+			st.setString(5, locationDTO.getState_province());
+			st.setString(6, locationDTO.getCountry_id());
+			
+			System.out.println(st.executeUpdate());
+			result = st.executeUpdate();
+			//NULL을 ("USER02"."LOCATIONS"."CITY") 안에 삽입할 수 없습니다
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				st.close();
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}// setInsert() 종료
+	
+	
+	
 	//List 전체
 	public ArrayList<LocationDTO> getList() {
 		Connection con = null;
@@ -62,7 +104,7 @@ public class LocationDAO {
 		LocationDTO result = null;
 		try {
 			con = dbConnect.getConnect();
-			System.out.println(con);
+			
 			
 			String sql = "SELECT * FROM LOCATIONS WHERE LOCATION_ID=?";
 			
@@ -73,7 +115,6 @@ public class LocationDAO {
 			
 			if(rs.next()) {
 				result = new LocationDTO();
-				System.out.println(rs.getString("street_address"));//출력확인용
 				result.setLocation_id(rs.getInt("location_id"));
 				result.setStreet_address(rs.getString("street_address"));
 				result.setPostal_code(rs.getString("postal_code"));
